@@ -12,7 +12,7 @@ const MealCard = () => {
     const themeSettings = {
         dark: {
             text: '#F5F5FF',
-            cardBg: '#1A103D',
+            cardBg: '#284497', //night blue 
             primary: '#A78BFA',
             shadow: '0 8px 24px rgba(167, 139, 250, 0.12)'
         },
