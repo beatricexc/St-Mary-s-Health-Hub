@@ -6,6 +6,7 @@ import BMICalculator from '../components/BMICalculator/BMICalculator';
 import BenefitsSection from '../components/BenefitsSection/BenefitsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import WaterTracker from '../components/WaterTracker';
+import MealCard from '../components/MealGenerator/MealCard';
 
 const { Title, Paragraph } = Typography;
 
@@ -62,6 +63,7 @@ export default function HomePage() {
         <BMICalculator />
         <TestimonialsSection />
         <WaterTracker />
+        <MealCard/>
         
         <section style={{ padding: '60px 24px', textAlign: 'center' }}>
           <Title level={2} style={{ marginBottom: 16, color: isDarkMode ? '#F5F5FF' : '#2D3436' }}>
