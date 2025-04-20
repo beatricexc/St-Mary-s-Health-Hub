@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Card, Button, Typography } from 'antd';
 import meal_generator from '../../assets/meal_generator.png';
+import meal_dark from '../../assets/meal_generator_dark.png';
 import { ThemeContext } from '../../context/ThemeProvider';
 
 const { Text } = Typography;
@@ -67,7 +68,7 @@ const MealCard = () => {
             {/* Image */}
             <img
                 alt="Meal generator"
-                src={meal_generator}
+                src={isDarkMode ? meal_dark : meal_generator}
                 style={{
                     width: '100%',
                     height: 'auto',
