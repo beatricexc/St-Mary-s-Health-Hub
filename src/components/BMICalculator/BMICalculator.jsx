@@ -41,8 +41,8 @@ export default function BMICalculator() {
     return (
         <div style={{ 
             backgroundColor: isDarkMode ? '#0F082C' : '#FAFAFA', 
-            padding: '60px 24px',
-            minHeight: '100vh',
+            padding: '40px 24px',
+            minHeight: '65vh',
             transition: 'all 0.3s ease'
         }}>
             <Title level={2} style={{ 
@@ -52,7 +52,6 @@ export default function BMICalculator() {
             }}>
                 Health Tools
             </Title>
-            
             <Card 
                 title={
                     <Space>
