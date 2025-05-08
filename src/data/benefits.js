@@ -1,7 +1,7 @@
-import { 
-  HeartOutlined, 
-  TeamOutlined, 
-  TrophyOutlined 
+import {
+  HeartOutlined,
+  TeamOutlined,
+  TrophyOutlined
 } from '@ant-design/icons';
 
 import hydrateImg from '../assets/hydrate.png';
@@ -11,7 +11,7 @@ import stressImg from '../assets/stress.png';
 const benefits = [
   {
     title: "Track Nutrition",
-    icon: HeartOutlined, // Just the component reference
+    icon: HeartOutlined,
     description: "Monitor your calorie intake and make healthier food choices",
     image: foodImg,
     iconSize: 24
