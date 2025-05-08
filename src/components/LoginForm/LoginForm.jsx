@@ -1,112 +1,98 @@
-import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-// import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Form, Input, Space } from 'antd';
-import { ThemeContext } from '../../context/ThemeProvider';
+// src/components/LoginForm/LoginForm.jsx
 
-// Define the university domain for email validation
-// This should be the same as the one used in the registration form
-// and in the local storage for the user data
-const uniDomain = '@live.stmarys.ac.uk';
+import React from 'react';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "./validation";
+import { checkIfCanLogin } from "./api";
 
-console.log({
-    emailCheck: new RegExp(`${uniDomain.replace('.', '\\.')}$`)
-})
+import {
+  DivStyleRegular,
+  FormStyle,
+  FormGroup,
+  LabelStyle,
+  InputStyleRegular,
+  ErrorStyle,
+  SubmitBtn
+} from "./LoginFormStyles";
 
-
+/**
+ * LoginForm
+ *
+ * @param {{ onLogin: (user:{username:string})=>void }} props
+ *   onLogin is called when credentials pass checkIfCanLogin
+ */
 export default function LoginForm({ onLogin }) {
-  const { isDarkMode } = useContext(ThemeContext);
+  // Initialize react-hook-form with Yup schema
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
+    register,                                                          // register inputs
+    handleSubmit,                                                      // wrap onSubmit for validation
+    formState: { errors }                                              // holds validation errors
   } = useForm({
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
+    defaultValues: {
+      university_email: '',
+      password: ''
+    }
   });
 
+  /**
+   * Called when the form passes validation.
+   * If checkIfCanLogin succeeds, invoke the passed-in onLogin callback.
+   */
   const onSubmit = (data) => {
-    console.log({
-      data
-    })
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser && storedUser.email === data.email && storedUser.password === data.password) {
-      alert('Login successful!');
-      onLogin();
+    const { university_email, password } = data;
+    if (checkIfCanLogin(university_email, password)) {
+      // pass the user object back up so LoginPage can login() & navigate
+      onLogin({ username: university_email });
     } else {
-      alert('Invalid credentials');
+      // handle a failed login: you could show a toast or set a form error here
+      alert("Invalid credentials, please try again.");
     }
   };
 
-  // Theme colors
-  const labelColor = isDarkMode ? '#A78BFA' : '#284497';
-  const errorColor = isDarkMode ? '#FF7875' : '#FF4D4F';
-  const inputBg = isDarkMode ? '#1E0B4D' : '#F5F5FF';
-
   return (
-    <Form
-      onFinish={handleSubmit(onSubmit)}
-      layout="vertical"
-      style={{
-        width: '100%',
-        maxWidth: '400px',
-        background: isDarkMode ? 'rgba(15, 8, 44, 0.9)' : 'rgba(250, 237, 181, 0.6)',
-        padding: '32px',
-        borderRadius: '12px',
-        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)'
-      }}
-    >
-      <Space direction="vertical" size={24} style={{ width: '100%' }}>
-        <Form.Item
-          label={<span style={{ color: labelColor, fontWeight: 600 }}>University Email</span>}
-          validateStatus={errors.email ? 'error' : ''}
-          help={errors.email && <span style={{ color: errorColor }}>{errors.email.message}</span>}
-        >
-          <Input
-            size="large"
-            placeholder={`regnum${uniDomain}`}
-            style={{ 
-              background: inputBg,
-              padding: '12px',
-              borderRadius: '6px'
-            }}
-            {...register('email')}
+    <div style={DivStyleRegular}>
+      <form style={FormStyle} onSubmit={handleSubmit(onSubmit)}>
+        {/* University Email Field */}
+        <div style={FormGroup}>
+          <label htmlFor="university_email" style={LabelStyle}>
+            University Email
+          </label>
+          <input
+            id="university_email"
+            type="email"
+            placeholder="regnum@live.stmarys.ac.uk"
+            style={InputStyleRegular}
+            {...register("university_email")}
           />
-        </Form.Item>
+          {errors.university_email && (
+            <p style={ErrorStyle}>{errors.university_email.message}</p>
+          )}
+        </div>
 
-        <Form.Item
-          label={<span style={{ color: labelColor, fontWeight: 600 }}>Password</span>}
-          validateStatus={errors.password ? 'error' : ''}
-          help={errors.password && <span style={{ color: errorColor }}>{errors.password.message}</span>}
-        >
-          <Input.Password
-            size="large"
+        {/* Password Field */}
+        <div style={FormGroup}>
+          <label htmlFor="password" style={LabelStyle}>
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
             placeholder="Enter your password"
-            style={{ 
-              background: inputBg,
-              padding: '12px',
-              borderRadius: '6px'
-            }}
-            {...register('password')}
+            style={InputStyleRegular}
+            {...register("password")}
           />
-        </Form.Item>
+          {errors.password && (
+            <p style={ErrorStyle}>{errors.password.message}</p>
+          )}
+        </div>
 
-        <Form.Item>
-          <Button 
-            type="primary" 
-            htmlType="submit" 
-            size="large"
-            block
-            style={{
-              height: '48px',
-              fontWeight: '600',
-              fontSize: '16px',
-              borderRadius: '6px'
-            }}
-          >
-            Sign In
-          </Button>
-        </Form.Item>
-      </Space>
-    </Form>
+        {/* Submit Button */}
+        <button style={SubmitBtn} type="submit">
+          Sign In
+        </button>
+      </form>
+    </div>
   );
 }
