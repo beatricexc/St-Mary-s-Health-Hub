@@ -46,7 +46,7 @@ export default function LoginForm({ onLogin }) {
       // pass the user object back up so LoginPage can login() & navigate
       onLogin({ username: university_email });
     } else {
-      // handle a failed login: you could show a toast or set a form error here
+      // handle a failed login
       alert("Invalid credentials, please try again.");
     }
   };
