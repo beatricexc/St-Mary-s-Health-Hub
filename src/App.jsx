@@ -1,31 +1,27 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeProvider';
+import { AuthProvider } from './context/AuthProvider';
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
-import ErrorBoundary from './components/ErrorBoundary';
 import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/Signup';
+import DashboardPage from './pages/DashboardPage';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider>
-        <ErrorBoundary>
+      <AuthProvider>
+        <ThemeProvider>
           <NavBar />
-        </ErrorBoundary>
-        <Routes>
-          <Route path="/" element={
-            <ErrorBoundary>
-              <HomePage />
-            </ErrorBoundary>
-          } />
-          <Route path="/login" element={
-            <ErrorBoundary>
-              <LoginPage />
-            </ErrorBoundary>
-          } />
-        </Routes>
-      </ThemeProvider>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+          </Routes>
+        </ThemeProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
