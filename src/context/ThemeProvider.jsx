@@ -33,10 +33,10 @@ export function ThemeProvider({ children }) {
           components: {
             Switch: {
               colorPrimary: isDarkMode ? '#A78BFA' : '#284497',
-              trackHeight: 24,  
-              trackMinWidth: 44, 
-              handleSize: 20,   
-              handleBg: '#FFFFFF', 
+              trackHeight: 24,
+              trackMinWidth: 44,
+              handleSize: 20,
+              handleBg: '#FFFFFF',
             }
           }
         }}
