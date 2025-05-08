@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Button, Card, Progress } from 'antd';
 import { PlusOutlined, UndoOutlined } from '@ant-design/icons';
-import { ThemeContext } from '../context/ThemeProvider';
+import { ThemeContext } from '../../context/ThemeProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Notification from './Notification';
@@ -11,25 +11,25 @@ const WaterTracker = () => {
   const [glasses, setGlasses] = useState(0);
   const goal = 8;
 
-  const REMINDER_INTERVAL = 1000; // 2 hours
+  const REMINDER_INTERVAL = 2000; // 2 hours
 
   // Reminder system
   useEffect(() => {
     const reminderTimer = setInterval(() => {
-        if (glasses < goal) {
-            // Show toast notification
-            toast.info(
-                <Notification />,
-                {
-                    position: "bottom-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    theme: isDarkMode ? 'dark' : 'light',
-                    toastId: 'water-reminder',
-                    icon: false // Disable default icon
-                }
-            )
-        }
+      if (glasses < goal) {
+        // Show toast notification
+        toast.info(
+          <Notification />,
+          {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            theme: isDarkMode ? 'dark' : 'light',
+            toastId: 'water-reminder',
+            icon: false // Disable default icon
+          }
+        )
+      }
     }, REMINDER_INTERVAL);
     return () => clearInterval(reminderTimer);
   }, [glasses, isDarkMode]);
@@ -56,7 +56,7 @@ const WaterTracker = () => {
 
   return (
     <>
-      <Card 
+      <Card
         title="Water Tracker"
         variant="borderless"
         styles={{
@@ -85,15 +85,15 @@ const WaterTracker = () => {
           overflow: 'hidden'
         }}
       >
-        <p style={{ 
-          marginBottom: 24, 
+        <p style={{
+          marginBottom: 24,
           textAlign: 'center',
           color: isDarkMode ? 'rgba(245, 245, 255, 0.8)' : 'rgba(45, 52, 54, 0.8)'
         }}>
           Goal: {goal} glasses (~2L)
         </p>
-        
-        <div style={{ 
+
+        <div style={{
           margin: '0 auto',
           position: 'relative'
         }}>
@@ -101,12 +101,12 @@ const WaterTracker = () => {
             type="dashboard"
             percent={(glasses / goal) * 100}
             format={() => (
-              <div style={{ 
+              <div style={{
                 color: currentTheme.text,
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: 24, fontWeight: 500 }}>{glasses}</div>
-                <div style={{ 
+                <div style={{
                   fontSize: 12,
                   color: isDarkMode ? 'rgba(245, 245, 255, 0.6)' : 'rgba(45, 52, 54, 0.6)'
                 }}>
@@ -121,7 +121,7 @@ const WaterTracker = () => {
           />
         </div>
 
-        <div style={{ 
+        <div style={{
           margin: '24px 0',
           fontSize: 16,
           fontWeight: 500,
@@ -130,8 +130,8 @@ const WaterTracker = () => {
           {glasses}/{goal} glasses
         </div>
 
-        <div style={{ 
-          display: 'flex', 
+        <div style={{
+          display: 'flex',
           gap: 12,
           width: '100%'
         }}>
@@ -139,7 +139,7 @@ const WaterTracker = () => {
             type="primary"
             icon={<PlusOutlined />}
             onClick={() => setGlasses(prev => Math.min(prev + 1, goal))}
-            style={{ 
+            style={{
               background: currentTheme.primary,
               border: 'none',
               height: 40,
@@ -152,7 +152,7 @@ const WaterTracker = () => {
           <Button
             icon={<UndoOutlined />}
             onClick={() => setGlasses(0)}
-            style={{ 
+            style={{
               color: currentTheme.text,
               borderColor: isDarkMode ? 'rgba(245, 245, 255, 0.2)' : 'rgba(45, 52, 54, 0.2)',
               height: 40,
@@ -165,28 +165,28 @@ const WaterTracker = () => {
         </div>
       </Card>
 
-      <ToastContainer 
-    position="bottom-right"
-    autoClose={5000}
-    newestOnTop
-    closeOnClick
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-    theme={isDarkMode ? 'dark' : 'light'}
-    toastStyle={{
-        backgroundColor: isDarkMode ? '#1A103D' : '#FFFFFF',
-        borderLeft: `4px solid ${isDarkMode ? '#A78BFA' : '#284497'}`,
-        boxShadow: isDarkMode 
-        ? '0 4px 12px rgba(167, 139, 250, 0.25)'
-        : '0 4px 12px rgba(40, 68, 151, 0.25)'
-    }}
-  progressStyle={{
-    background: isDarkMode 
-      ? 'linear-gradient(to right, #A78BFA, #20DBAE)'
-      : 'linear-gradient(to right, #284497, #36A2EB)'
-  }}
-/>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        newestOnTop
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={isDarkMode ? 'dark' : 'light'}
+        toastStyle={{
+          backgroundColor: isDarkMode ? '#1A103D' : '#FFFFFF',
+          borderLeft: `4px solid ${isDarkMode ? '#A78BFA' : '#284497'}`,
+          boxShadow: isDarkMode
+            ? '0 4px 12px rgba(167, 139, 250, 0.25)'
+            : '0 4px 12px rgba(40, 68, 151, 0.25)'
+        }}
+        progressStyle={{
+          background: isDarkMode
+            ? 'linear-gradient(to right, #A78BFA, #20DBAE)'
+            : 'linear-gradient(to right, #284497, #36A2EB)'
+        }}
+      />
     </>
   );
 };
