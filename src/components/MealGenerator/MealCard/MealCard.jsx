@@ -51,7 +51,7 @@ const MealCard = ({ onGenerateMeal }) => {
                 overflow: 'hidden'
             }}
         >
-            {/* Custom Header with Wand Emoji */}
+            {/* Custom Header */}
             <div style={{
                 display: 'flex',
                 alignItems: 'center',

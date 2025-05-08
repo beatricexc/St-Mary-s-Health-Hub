@@ -22,7 +22,7 @@ const { Step } = Steps;
 const { Title, Text } = Typography;
 
 const SymptomChecker = () => {
-    // Consume the current theme (light or dark) for styling
+    // Consume the current theme for styling
     const { isDarkMode } = useContext(ThemeContext);
 
     // Track which step of the three-step wizard is active (0–2)

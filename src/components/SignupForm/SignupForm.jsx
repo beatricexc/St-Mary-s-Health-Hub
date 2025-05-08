@@ -62,7 +62,7 @@ export default function SignupForm() {
                         University Email
                     </label>
                     <input
-                        id="university_email"                                          // Links label → this input
+                        id="university_email"                                          // Links label
                         type="email"                                                   // Mobile‐friendly email keyboard
                         placeholder="2410589@live.stmarys.ac.uk"                      // Example format
                         style={InputStyle}
@@ -79,7 +79,7 @@ export default function SignupForm() {
                         Password
                     </label>
                     <input
-                        id="password"                                                  // Links label → this input
+                        id="password"                                                  // Links label 
                         type="password"                                                // Masks user input
                         placeholder="Enter your password"
                         style={InputStyle}
