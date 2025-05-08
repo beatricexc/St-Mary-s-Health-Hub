@@ -34,8 +34,8 @@ export default function AnxietyTips() {
     return (
         <Card
             title="Anxiety Management Tips"
-            variant="borderless"           // use variant instead of bordered
-            styles={{                      // header/body styling via styles prop
+            variant="borderless"
+            styles={{
                 header: {
                     color: currentTheme.text,
                     fontWeight: 500,
@@ -49,8 +49,7 @@ export default function AnxietyTips() {
                     backgroundColor: currentTheme.cardBg
                 }
             }}
-            style={{                       // outer wrapper styles unchanged
-                width: '100%',
+            style={{
                 backgroundColor: currentTheme.cardBg,
                 boxShadow: currentTheme.shadow,
                 borderRadius: 12,

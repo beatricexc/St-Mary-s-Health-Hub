@@ -1,4 +1,3 @@
-// src/components/Notification.jsx
 
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeProvider';

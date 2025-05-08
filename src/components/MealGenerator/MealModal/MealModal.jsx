@@ -21,7 +21,7 @@ const MealModal = ({ open, handleClose, meal }) => {
             text: '#F5F5FF',
             cardBg: '#1A103D',
             primary: '#A78BFA',
-            secondary: '#FACC15', // nice yellow
+            secondary: '#FACC15', // yellow
             shadow: '0 8px 24px rgba(167, 139, 250, 0.12)',
         },
         light: {
@@ -142,9 +142,6 @@ const MealModal = ({ open, handleClose, meal }) => {
                         </ul>
                     </div>
 
-
-
-
                 </div>
                 {/* Instructions */}
                 <Title level={5} style={{ color: currentTheme.text }}>📖 Instructions</Title>
@@ -178,7 +175,7 @@ const MealModal = ({ open, handleClose, meal }) => {
                             <Button
                                 icon={<YoutubeOutlined />}
                                 style={{
-                                    backgroundColor: currentTheme.primary, // changed from `secondary`
+                                    backgroundColor: currentTheme.primary,
                                     border: 'none',
                                     color: isDarkMode ? '#1A103D' : '#fff',
                                     fontWeight: 500,

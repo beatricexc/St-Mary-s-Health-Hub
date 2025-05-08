@@ -10,10 +10,10 @@ const { Title } = Typography;
 export default function BenefitsSection() {
   const { isDarkMode } = useContext(ThemeContext);
 
-  // Keep yellow on light; use your app’s dark page background on dark
+  // Keep yellow on light; use app’s dark page background on dark
   const sectionBg = isDarkMode ? '#0F082C' : '#FAEDB5';
 
-  // Reuse your theme tokens for cards and text
+  // Reuse theme tokens for cards and text
   const themeSettings = {
     dark: {
       text: '#F5F5FF',

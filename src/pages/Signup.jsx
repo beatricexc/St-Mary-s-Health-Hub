@@ -25,7 +25,7 @@ export default function SignupPage() {
                 overflow: 'hidden',
             }}
         >
-            {/* The form now handles its own redirect to /dashboard */}
+            {/* The form handles its own redirect to /dashboard */}
             <SignupForm />
         </div>
     );

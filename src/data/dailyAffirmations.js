@@ -11,7 +11,6 @@ import {
 
 /**
  * A list of daily affirmations with corresponding icons.
- * Add, remove or reorder as you like!
  */
 const dailyAffirmations = [
     {
