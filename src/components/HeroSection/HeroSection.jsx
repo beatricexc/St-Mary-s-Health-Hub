@@ -3,6 +3,7 @@ import { Button, Typography, Row, Col } from 'antd';
 import { ThemeContext } from '../../context/ThemeProvider';
 import heroImageLight from '../../assets/hero_image.jpg';
 import heroImageDark from '../../assets/test_dark_image.png';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 
@@ -10,22 +11,23 @@ const { Title, Paragraph } = Typography;
 
 export default function HeroSection() {
   const { isDarkMode } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   return (
-    <Row 
-      align="middle" 
-      style={{ 
-        minHeight: '60vh', 
+    <Row
+      align="middle"
+      style={{
+        minHeight: '60vh',
         padding: '40px 24px',
         backgroundColor: isDarkMode ? '#0F082C' : '#FFFFFF',
         transition: 'background-color 0.3s ease'
       }}
     >
       {/* Text Column - Left on desktop, bottom on mobile */}
-      <Col 
-        xs={24} 
-        md={12} 
-        style={{ 
+      <Col
+        xs={24}
+        md={12}
+        style={{
           textAlign: 'center',
           padding: '0 16px',
           marginBottom: '32px',
@@ -36,10 +38,10 @@ export default function HeroSection() {
           }
         }}
       >
-        <Title 
-          level={1} 
-          style={{ 
-            fontSize: '2.5rem', 
+        <Title
+          level={1}
+          style={{
+            fontSize: '2.5rem',
             lineHeight: 1.2,
             marginBottom: '16px',
             color: isDarkMode ? '#ffdc7a' : '#2D3436'
@@ -47,10 +49,10 @@ export default function HeroSection() {
         >
           Take Control of <span style={{ color: isDarkMode ? '#A78BFA' : '#284497' }}>Your Health</span>
         </Title>
-        
-        <Paragraph 
-          style={{ 
-            fontSize: '1.1rem', 
+
+        <Paragraph
+          style={{
+            fontSize: '1.1rem',
             marginBottom: '24px',
             maxWidth: '500px',
             marginLeft: 'auto',
@@ -64,13 +66,14 @@ export default function HeroSection() {
         >
           Personalized tools to track and improve your wellness journey.
         </Paragraph>
-        
-        <Button 
-          type="primary" 
+
+        <Button
+          type="primary"
           size="large"
-          style={{ 
+          onClick={() => navigate('/login')}
+          style={{
             background: isDarkMode ? '#A78BFA' : '#284497',
-            border: 'none', 
+            border: 'none',
             padding: '0 32px',
             height: '48px',
             ':hover': {
@@ -83,10 +86,10 @@ export default function HeroSection() {
       </Col>
 
       {/* Image Column - Right on desktop, top on mobile */}
-      <Col 
-        xs={24} 
-        md={12} 
-        style={{ 
+      <Col
+        xs={24}
+        md={12}
+        style={{
           textAlign: 'center',
           padding: '0 16px',
           '@media (min-width: 768px)': {
@@ -95,11 +98,11 @@ export default function HeroSection() {
           }
         }}
       >
-        <img 
-          src={isDarkMode ? heroImageDark : heroImageLight} 
+        <img
+          src={isDarkMode ? heroImageDark : heroImageLight}
           alt="Health tracking app"
-          style={{ 
-            maxWidth: '100%', 
+          style={{
+            maxWidth: '100%',
             maxHeight: '400px',
             borderRadius: 8,
             objectFit: 'contain'
